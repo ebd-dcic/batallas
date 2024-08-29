@@ -1,1 +1,2 @@
-docker_persist/data/*
+db/*
+!db/.gitignore
