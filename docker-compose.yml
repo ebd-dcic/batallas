@@ -1,9 +1,10 @@
-version: "3.9"
-
 services:
 
   batallas:
-    image: mysql:latest
+    # MySQL
+    image: mysql:latest    # https://hub.docker.com/_/mysql
+    # https://tecadmin.net/using-mysql-with-docker-compose/
+    restart: always
     container_name: mysql_batallas_2024
     ports:
       #- "3306:3306"
@@ -13,9 +14,16 @@ services:
       #MYSQL_DATABASE: app_db
       #MYSQL_USER: db_user
       #MYSQL_PASSWORD: db_user_pass
+    #env_file: 
+    #  mysql.env      
     volumes:
-      - "./config/my.conf:/etc/mysql/conf.d/config-file.cnf"
+      - "./config/my.conf:/etc/mysql/conf.d/config-file.cnf" # Montar como solo lectura
       - "./bd:/var/lib/mysql:rw"
       - type: bind # Host and Docker machines have identical views to the same directory; changes propagate both ways
         source: ./src # Host machine directory to mount
         target: /app # Docker machine directory to be mapped to
+    command: bash -c "chmod 644 /etc/mysql/conf.d/config-file.cnf && docker-entrypoint.sh mysqld"        
+
+    # MariaDB
+    # image: mariadb:latest  # https://hub.docker.com/_/mariadb
+    # https://mariadb.com/kb/en/installing-and-using-mariadb-via-docker/
