@@ -1,6 +1,6 @@
 Elementos de Bases de Datos - 2024
 
-Profesor:
+Profesor: Mercedes Vitturini
 Asistente: Walter Grandinetti
 
 Alumnos:
